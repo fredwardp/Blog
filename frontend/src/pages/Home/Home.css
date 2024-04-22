@@ -1,0 +1,9 @@
+.hero-section {
+  height: 90vh;
+  background: url("./img/charles-oliveira2.png"), no-repeat center;
+  background-size: cover;
+  padding-top: 6vw;
+}
+.hero-h1 span {
+  display: block;
+}

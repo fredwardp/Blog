@@ -3,18 +3,24 @@
     "id": "1",
     "titel": "Mein zweites Bild Version 2.0",
     "text": "lorem20",
-    "imgUrl": "hier könnte dein Link stehen"
-  },
-  {
-    "id": 1713373774368,
-    "titel": "Mein zweites Bild",
-    "text": "lorem20",
-    "imgUrl": "hier könnte dein Link stehen"
+    "imgUrl": "0a64ee2597ef2915ff1725c8b03bebc0"
   },
   {
     "id": 1713375594870,
-    "titel": "Mein zweites Bild Version 2.0",
+    "titel": "Mein zweites Bild Version 3.0",
     "text": "lorem20",
-    "imgUrl": "hier könnte dein Link stehen"
+    "imgUrl": "0a64ee2597ef2915ff1725c8b03bebc0"
+  },
+  {
+    "id": "3",
+    "titel": "Mein zweites Bild Version 4.0",
+    "text": "lorem20",
+    "imgUrl": "0a64ee2597ef2915ff1725c8b03bebc0"
+  },
+  {
+    "id": 1713375454570,
+    "titel": "Mein zweites Bild Version 5.0",
+    "text": "lorem20",
+    "imgUrl": "0a64ee2597ef2915ff1725c8b03bebc0"
   }
 ]

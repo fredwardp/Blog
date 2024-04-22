@@ -1,0 +1,13 @@
+.content-section {
+  padding-block: 4vw;
+}
+
+.gold-line {
+  height: 2px;
+  background-color: var(--gold);
+}
+
+.article-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

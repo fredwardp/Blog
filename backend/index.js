@@ -13,6 +13,13 @@ const app = express();
 // express.json() ist ein body-parser-middleware von express der json inhalte parsed
 app.use(express.json());
 
+app.use(express.static("uploads"));
+const upload = multer({ dest: "./uploads" });
+
+app.post("/api/v1/uploads", upload.single("img"), (req, res) => {
+  res.json({ imgUrl: req.file.filename });
+});
+
 // Um den Fehler im Browser "Corse policy blablabla" zu verhindern
 app.use(cors());
 
@@ -23,7 +30,7 @@ app.use((req, _, next) => {
 });
 
 // jede einzelne request Anfrage aufgreifen
-app.get("/articles", (_, res) => {
+app.get("/api/v1/articles", (_, res) => {
   readBlogArticle()
     .then((articles) => res.status(200).json(articles))
     .catch((err) =>
@@ -31,7 +38,7 @@ app.get("/articles", (_, res) => {
     );
 });
 
-app.get("/articles/:id", (req, res) => {
+app.get("/api/v1/articles/:id", (req, res) => {
   const articleId = req.params.id;
   readBlogArticle()
     .then((articles) =>
@@ -49,9 +56,12 @@ app.get("/articles/:id", (req, res) => {
     );
 });
 
-app.post("/articles", (req, res) => {
+app.post("/api/v1/articles", (req, res) => {
+  const timeMs = Date.now();
+  const actDate = new Date(timeMs);
   const articleTemplate = {
     id: Date.now(),
+    time: actDate,
     titel: req.body.titel,
     text: req.body.text,
     imgUrl: req.body.imgUrl,
@@ -66,7 +76,7 @@ app.post("/articles", (req, res) => {
     );
 });
 
-app.patch("/articles/:id", (req, res) => {
+app.patch("/api/v1/articles/:id", (req, res) => {
   const articleId = req.params.id;
   const updArticle = req.body;
 
@@ -90,6 +100,21 @@ app.patch("/articles/:id", (req, res) => {
     );
 });
 
-const PORT = 301;
+app.delete("/api/v1/articles/:id", (req, res) => {
+  const articleId = req.params.id;
+  readBlogArticle()
+    .then((articles) =>
+      articles.filter((article) => article.id.toString() !== articleId)
+    )
+    .then((updArticles) => writeBlogArticle(updArticles))
+    .then((updArticles) => res.status(200).json(updArticles))
+    .catch((err) =>
+      res
+        .status(500)
+        .json({ message: "Internal Server Error while deleting post", err })
+    );
+});
+
+const PORT = 309;
 
 app.listen(PORT, () => console.log("Server ready at Port:", PORT));
